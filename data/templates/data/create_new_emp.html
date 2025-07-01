@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block content %}
+
+<div class="dashbord_setings">
+    {% if mesage_obj.mesage %}
+        {% if mesage_obj.is_error == 1 %}
+            <h3 class="error_mesage">{{mesage_obj.mesage}}</h3>
+            {% else %}
+            <h3 class="succes_mesage">{{mesage_obj.mesage}}</h3>
+        {% endif %}
+    {% endif %}
+    {% if  user.is_superuser%}
+        <h2>Create new employees</h2>
+        <form method="post" action="{% url 'create_list_of_employes' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <button><input type="file" name="file" id="file" required></button>
+            <button type="submit">Create</button>
+        </form>
+        <form action="{% url 'delete_users_except_some' %}" method="post" onsubmit="return confirm('Are you sure you want to delete users except IDs 1, 2, 3, 4?');">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Delete Users Except IDs 1,2,3,4</button>
+        </form>
+    {% endif %}
+
+</div>
+
+{% endblock %}

@@ -4,6 +4,7 @@ from .models import Employees, Attendance
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Sum
 
+
 @login_required
 def employee_detail(request, id=None):
     if id:

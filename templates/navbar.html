@@ -8,7 +8,8 @@
         <button onclick="window.location.href='/'"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>
     </div>
     <ul>
-        <li><a href="/employees"><i class="fa-solid fa-user"></i>Darbinieki</a></li>
+        <li><a href="/employees"><i class="fa-solid fa-user"></i>Employees</a></li>
+        <li><a href="/data/create_new_employees">+<i class="fa-solid fa-user"></i>Generate employees</a></li>
         {% if user.is_superuser%}
         <li><a href="/admin"><i class="fa-solid fa-gear"></i>Admin panel</a></li>
         {% endif %}
