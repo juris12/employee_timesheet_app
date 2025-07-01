@@ -1,0 +1,31 @@
+<nav class="navbar_outer">
+    <div class="navbar_home">
+        <button><a href="/">Timesheet V.1</a></button>
+        <button onclick="toggleClass()" class="navbar_close"><i class="fa-solid fa-arrow-left"></i></button>
+    </div>
+    <div class="navbar_profil">
+        <p>User: {{ user.username }}</p>
+        <button onclick="window.location.href='/'"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+    </div>
+    <ul>
+        <li><a href="/employees"><i class="fa-solid fa-user"></i>Darbinieki</a></li>
+        {% if user.is_superuser%}
+        <li><a href="/admin"><i class="fa-solid fa-gear"></i>Admin panel</a></li>
+        {% endif %}
+    </ul>
+</nav>
+<script>
+    function toggleClass() {
+        const bodyElement = document.querySelector('body');
+        bodyElement.classList.toggle('closed_nav_bar');
+        if (bodyElement.classList.contains('closed_nav_bar')) {
+            localStorage.setItem('navbarClosed', 'true');
+        } else {
+            localStorage.setItem('navbarClosed', 'false');
+        }
+    }
+
+    window.addEventListener('DOMContentLoaded', function() {
+        document.body.classList.remove('disable-transitions');
+    });
+</script>

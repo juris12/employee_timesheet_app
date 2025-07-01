@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="employee_outer">
+  <div class="employee_filter">
+        <h2>Employees</h2>
+        <div class="employee_search">
+            <form id="search_form" onsubmit="searchEmployees(); return false;">
+              <input type="text" id="searchInput" placeholder="Type name....." value="{{ request.GET.q }}">
+            </form>
+            <div id="suggestions">
+            </div>
+        </div>
+        <button id="toggleButton" onclick="toggleAmount()">Show 60/120</button>
+        <h4> Found {{ num_rows }} employees</h4>
+    </div>
+
+  <table id="employee_table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for emp in employees %}
+        <tr onclick="window.location.href='{{ emp.id }}'">
+          <td>{{ emp.id }}</td>
+          <td>{{ emp.username }}</td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="2">No employees found</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+<script>
+    function searchEmployees() {
+        var input, filter;
+        input = document.getElementById("searchInput");
+        filter = input.value;
+        var newUrl = window.location.pathname + '?limit=60' + '&q=' + encodeURIComponent(filter);
+        window.location.href = newUrl;
+    }
+    function toggleAmount() {
+        var currentURL = window.location.href;
+        if (currentURL.includes('?limit=60')) {
+            window.location.href = currentURL.replace('?limit=60', '?limit=120');
+        } else {
+            window.location.href = currentURL.replace('?limit=120', '?limit=60');
+        }
+    }
+</script>
+{% endblock %}

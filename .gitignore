@@ -1,0 +1,7 @@
+test_venv/
+node_modules/
+css/
+*.db
+*.db:Zone.Identifier
+package-lock.json
+package.json
