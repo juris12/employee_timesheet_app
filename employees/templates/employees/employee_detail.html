@@ -1,14 +1,29 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block head %}
+<link rel="stylesheet" href="{% static '/employees/css/index.css' %}">
+{% endblock %}
 
 {% block content %}
 <section class="employee_outer">
-  <div class="employee_filter">
+  <div class="employee_detail">
+      <div class="employee_detail_list">
         <h2>Employee {{employee.username}}</h2>
-        <button id="toggleButton" onclick="toggleAmount()">Show 60/120</button>
-        <h4> Found {{ num_rows }} dates</h4>
-    </div>
+        <p><span>average per day: </span> {{average}}h</p>
+        <p><span>median: </span> {{median}}h</p>
+        <p><span>Min: </span> {{min}}h</p>
+        <p><span>Max: </span> {{max}}h</p>
+      </div>
+      <div class="employee_detail_graf">
+        <canvas id="attendanceChart" width="800px" height="400"></canvas>
+      </div>
+  </div>
+  <div class="employee_filter">
+      <h4>Hours worked per day</h4>
+      <button id="toggleButton" onclick="toggleAmount()">Show 60/120</button>
+      <h4> Found {{ num_rows }} dates</h4>
+  </div>
 
   <table id="employee_table">
     <thead>
@@ -31,4 +46,48 @@
     </tbody>
   </table>
 </section>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('attendanceChart').getContext('2d');
+
+    const attendanceChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: {{ dates_for_chart|safe }},
+            datasets: [{
+                label: 'Total Hours Worked per Day',
+                data: {{ hours_for_chart|safe }},
+                fill: false,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1,
+                pointRadius: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: {
+                    ticks: {
+                        autoSkip: true,
+                        maxTicksLimit: 15
+                    },
+                    title: {
+                        display: true,
+                        text: 'Date'
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Hours Worked'
+                    }
+                }
+            }
+        }
+    });
+</script>
 {% endblock %}

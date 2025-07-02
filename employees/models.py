@@ -16,6 +16,9 @@ class Attendance(models.Model):
     class Meta:
         managed = False
         db_table = 'Attendance'
+    def __str__(self):
+            return f"{self.employee.username} - {self.date} ({self.hours_worked} hrs"
+
 
 
 class Employees(models.Model):
@@ -24,3 +27,6 @@ class Employees(models.Model):
     class Meta:
         managed = False
         db_table = 'Employees'
+    def __str__(self):
+        return self.username
+    

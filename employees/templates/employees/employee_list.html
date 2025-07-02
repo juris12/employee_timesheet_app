@@ -19,14 +19,12 @@
   <table id="employee_table">
     <thead>
       <tr>
-        <th>ID</th>
         <th>Name</th>
       </tr>
     </thead>
     <tbody>
       {% for emp in employees %}
         <tr onclick="window.location.href='detail/{{ emp.id }}'">
-          <td>{{ emp.id }}</td>
           <td>{{ emp.username }}</td>
         </tr>
       {% empty %}
@@ -84,7 +82,7 @@
                     searchInput.value = suggestion;
                     suggestionsContainer.innerHTML = '';
                     suggestionsContainer.style.display = "none"
-                    searchMedication()
+                    searchEmployees()
                 });
                 suggestionsContainer.appendChild(suggestionElement);
             });

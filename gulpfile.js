@@ -4,6 +4,7 @@ const sass = require('gulp-sass')(require('sass'));
 function compileSass() {
     return gulp.src([
         'employees/static/employees/scss/**/*.scss', 
+        'accounts/static/accounts/scss/**/*.scss', 
         'static/scss/**/*.scss'
     ])
         .pipe(sass().on('error', sass.logError))
@@ -15,6 +16,7 @@ function compileSass() {
 function watch() {
     gulp.watch([
         'employees/static/employees/scss/**/*.scss',
+        'accounts/static/accounts/scss/**/*.scss', 
         'static/scss/**/*.scss'
     ], compileSass);
 }

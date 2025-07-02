@@ -2,19 +2,20 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from .models import Employees, Attendance
 from django.shortcuts import render, get_object_or_404
-from django.db.models import Sum, Func, F
+from django.db.models import Avg, Min, Max, Sum, Func, F
 from django.http import JsonResponse
 from django.db.models import Case, When, IntegerField
+import statistics
+import json
 
 
 @login_required
 def employee_detail(request, id=None):
     if id:
         employee = get_object_or_404(Employees, pk=id)
+        attendance = Attendance.objects.filter(employee=employee)
         attendance_summary = (
-            Attendance.objects
-            .filter(employee=employee)
-            .values('date')
+            attendance.values('date')
             .annotate(
                 total_hours=Func(
                     Sum('hours_worked'),
@@ -24,9 +25,23 @@ def employee_detail(request, id=None):
             )
             .order_by('date')
         )
+        hours_list = list(attendance.values_list('hours_worked', flat=True))
+        average = round(statistics.mean(hours_list), 2) if hours_list else 0
+        median = round(statistics.median(hours_list), 2) if hours_list else 0
+        min_val = round(min(hours_list), 2) if hours_list else 0
+        max_val = round(max(hours_list), 2) if hours_list else 0
+
+        dates_for_chart = [entry['date'] for entry in attendance_summary]
+        hours_for_chart = [entry['total_hours'] for entry in attendance_summary]
         return render(request, 'employees/employee_detail.html', {
             'employee': employee,
             'attendance': attendance_summary,
+            'average': average,
+            'median': median,
+            'min': min_val,
+            'max': max_val,
+            'dates_for_chart': json.dumps(dates_for_chart),
+            'hours_for_chart': json.dumps(hours_for_chart),
             'num_rows': attendance_summary.count()
         })
 @login_required
