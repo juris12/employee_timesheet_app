@@ -1,8 +1,10 @@
 test_venv/
 node_modules/
-css/
+
 *.db
 *.md
 *.db:Zone.Identifier
 package-lock.json
 package.json
+*.pem
+*.pem:Zone.Identifier
