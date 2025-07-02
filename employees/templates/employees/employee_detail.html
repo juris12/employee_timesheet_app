@@ -28,7 +28,7 @@
   <table id="employee_table">
     <thead>
       <tr>
-        <th>Date</th>
+        <th onclick="toggleSort()">Date</th>
         <th>Hours worked comb.</th>
       </tr>
     </thead>
@@ -50,6 +50,38 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
+    function toggleSort() {
+        var currentURL = window.location.href;
+        if (currentURL.includes('?sort=AESC')) {
+            window.location.href = currentURL.replace('?sort=AESC', '?sort=DESC');
+        } else if (currentURL.includes('?sort=DESC')) {
+            window.location.href = currentURL.replace('?sort=DESC', '?sort=AESC');
+        } else {
+          const newUrl = window.location.pathname + '?sort=DESC'
+          window.location.href = newUrl;
+        }
+    }
+    function removeChart() {
+      const chart = document.querySelector('.employee_detail_graf, .employee_detail_graf_mob');
+      if (!chart) return; // safety check
+
+      if (window.innerWidth < 850) {
+          chart.classList.remove('employee_detail_graf');
+          chart.classList.add('employee_detail_graf_mob');
+      } else {
+          chart.classList.remove('employee_detail_graf_mob');
+          chart.classList.add('employee_detail_graf');
+      }
+      }
+
+    // Run once on load
+    removeChart();
+
+    // Run on resize
+    window.addEventListener('resize', removeChart);
+    window.addEventListener('DOMContentLoaded', function() {
+        document.body.classList.remove('disable-transitions');
+    });
     const ctx = document.getElementById('attendanceChart').getContext('2d');
 
     const attendanceChart = new Chart(ctx, {

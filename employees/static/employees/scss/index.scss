@@ -20,3 +20,11 @@
         }
     }
 }
+.employee_detail_graf_mob{
+    display: none;
+}
+@media only screen and (max-width: 1020px) {
+  .employee_detail .employee_detail .employee_detail_graf{
+       display: none;
+}
+}

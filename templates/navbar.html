@@ -25,7 +25,24 @@
             localStorage.setItem('navbarClosed', 'false');
         }
     }
+    function updateNavbarClass() {
+    const dashbord = document.querySelector('.dashbord_outer,.dashbord_outer_mob');
+    if (!dashbord) return; // safety check
 
+    if (window.innerWidth < 850) {
+        dashbord.classList.remove('dashbord_outer');
+        dashbord.classList.add('dashbord_outer_mob');
+    } else {
+        dashbord.classList.remove('dashbord_outer_mob');
+        dashbord.classList.add('dashbord_outer');
+    }
+    }
+
+    // Run once on load
+    updateNavbarClass();
+
+    // Run on resize
+    window.addEventListener('resize', updateNavbarClass);
     window.addEventListener('DOMContentLoaded', function() {
         document.body.classList.remove('disable-transitions');
     });

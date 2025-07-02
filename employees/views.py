@@ -13,6 +13,7 @@ import json
 def employee_detail(request, id=None):
     if id:
         employee = get_object_or_404(Employees, pk=id)
+        sort = request.GET.get('sort') == 'DESC'
         attendance = Attendance.objects.filter(employee=employee)
         attendance_summary = (
             attendance.values('date')
@@ -23,7 +24,7 @@ def employee_detail(request, id=None):
                     template='%(function)s(%(expressions)s, 2)'
                 )
             )
-            .order_by('date')
+            .order_by(f'{"" if sort else "-"}date')
         )
         hours_list = list(attendance.values_list('hours_worked', flat=True))
         average = round(statistics.mean(hours_list), 2) if hours_list else 0

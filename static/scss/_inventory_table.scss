@@ -7,7 +7,7 @@
         display: flex;
         padding: 0px 10px 0px 0px;
         align-items: center;
-
+        flex-wrap: wrap;
         .employee_search{
             width: 40%;
             position: relative;
@@ -115,3 +115,15 @@
     }
 }
 
+@media only screen and (max-width: 600px) {
+  .employee_outer, .employee_filter{
+        background-color: rgb(255, 255, 255);
+        border-radius: 10px;
+        padding: 10px;
+        flex-direction: column;
+
+    }
+    .employee_outer .employee_filter .employee_search{
+    width: 90%;
+}
+}
