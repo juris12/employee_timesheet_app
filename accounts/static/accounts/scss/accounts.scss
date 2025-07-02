@@ -1,11 +1,11 @@
 .custom_form {
-    width: 80vw;; // Adjust this value based on your design needs
-    margin: 0 auto; // Center the form in the viewport
+    width: 80vw;
+    margin: 0 auto;
     padding: 20px;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  
+    height: fit-content;
     .form_group {
         display: flex;
         flex-direction: column;
@@ -20,7 +20,7 @@
         select {
             width: 100%;
             padding: 10px;
-            margin-bottom: 1rem; // Space below each input or select
+            margin-bottom: 1rem;
             border: 1px solid #ccc;
             border-radius: 4px;
             &:focus {
@@ -29,16 +29,12 @@
             box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
             }
         }
-  
-        // Custom styling for <select> dropdown
         select {
-            appearance: none; // Remove default browser styling
+            appearance: none;
             background-color: #f8f9fa;
             position: relative;
             cursor: pointer;
             
-            // Add a custom arrow or other styling
-            background-image: url('path/to/custom-arrow.svg');
             background-repeat: no-repeat;
             background-position: right 10px center;
             background-size: 12px;
@@ -68,8 +64,9 @@
     background-color: #ffffff;
     width: 400px;
     border-radius: 10px;
-    height: 30vh;
     margin: 20vh auto;
+        height: fit-content;
+
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -103,4 +100,44 @@
     h2{
         font-size: 2rem;
     }
+}
+@media only screen and (max-width: 1020px) {
+  .login_form{
+    width: 95%;
+    margin: 20vh auto;
+    font-size: 2rem;
+     div {
+        margin-bottom: 10px;
+        display: flex;
+        flex-direction: column;
+    }
+    input {
+        padding: 15px;
+        margin: 10px;
+        width: 95%;
+        font-size: 2rem;
+    }
+    button{
+        border-radius: 15px;
+        padding: 30px 55px;
+        margin: auto;
+        font-size: 2rem;
+    }
+}
+
+.custom_form {
+    width: 90%;
+    margin: 0 auto;
+    padding: 20px;
+    input{
+        width: 80vw;
+    }
+
+
+    
+    button[type="submit"] {
+        padding: 40px 25px;
+    }
+  }
+
 }

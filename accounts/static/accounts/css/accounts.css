@@ -5,6 +5,7 @@
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: fit-content;
 }
 .custom_form .form_group {
   display: flex;
@@ -34,7 +35,6 @@
   background-color: #f8f9fa;
   position: relative;
   cursor: pointer;
-  background-image: url("path/to/custom-arrow.svg");
   background-repeat: no-repeat;
   background-position: right 10px center;
   background-size: 12px;
@@ -59,8 +59,8 @@
   background-color: #ffffff;
   width: 400px;
   border-radius: 10px;
-  height: 30vh;
   margin: 20vh auto;
+  height: fit-content;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -94,4 +94,40 @@
 }
 .unauthorized_error_mesage h2 {
   font-size: 2rem;
+}
+
+@media only screen and (max-width: 1020px) {
+  .login_form {
+    width: 95%;
+    margin: 20vh auto;
+    font-size: 2rem;
+  }
+  .login_form div {
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+  .login_form input {
+    padding: 15px;
+    margin: 10px;
+    width: 95%;
+    font-size: 2rem;
+  }
+  .login_form button {
+    border-radius: 15px;
+    padding: 30px 55px;
+    margin: auto;
+    font-size: 2rem;
+  }
+  .custom_form {
+    width: 90%;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  .custom_form input {
+    width: 80vw;
+  }
+  .custom_form button[type=submit] {
+    padding: 40px 25px;
+  }
 }

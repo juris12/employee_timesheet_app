@@ -66,13 +66,13 @@
 }
 
 .closed_nav_bar .show_nav_bar_btn {
-  width: 25px;
-  height: 25px;
+  width: 35px;
+  height: 85px;
   background-color: #b9b9b9;
   transform: rotate(45deg);
   position: absolute;
-  top: -10px;
-  left: -10px;
+  top: -25px;
+  left: -12px;
   transition: ease-in-out 0.3s;
 }
 .closed_nav_bar .show_nav_bar_btn:hover {
@@ -125,6 +125,7 @@
 .dashbord_outer_mob {
   width: 100%;
   margin-left: 0px;
+  min-height: auto;
 }
 
 .employee_outer .employee_filter {

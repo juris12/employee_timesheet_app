@@ -10,7 +10,7 @@
 </head>
 <body>
     <form method="post" class="login_form">
-        <h3>Autentificējies ievadot savu e-pastu un paroli!</h3>
+        <h3>Type your name and password</h3>
 
         {% if error %}
         <div style="color: red;">{{ error }}</div>
@@ -18,15 +18,15 @@
         {% csrf_token %}
         
         <div>
-            <label for="username">Lietotājvārds:</label>
+            <label for="username">Name:</label>
             <input type="text" name="username" id="username" required><br>
         </div> 
         <div>
-            <label for="password">Parole:</label>
+            <label for="password">Password:</label>
             <input type="password" name="password" id="password" required><br>
         </div>
         
-        <button type="submit" class="zoom">Ienākt</button>
+        <button type="submit" class="zoom">Login</button>
     </form>
 </body>
 </html>
