@@ -14,7 +14,6 @@ class Attendance(models.Model):
     hours_worked = models.FloatField()
 
     class Meta:
-        managed = False
         db_table = 'Attendance'
     def __str__(self):
             return f"{self.employee.username} - {self.date} ({self.hours_worked} hrs"
@@ -25,7 +24,6 @@ class Employees(models.Model):
     username = models.TextField()
 
     class Meta:
-        managed = False
         db_table = 'Employees'
     def __str__(self):
         return self.username

@@ -1,7 +1,7 @@
 test_venv/
 node_modules/
 
-*.db
+
 *.md
 *.db:Zone.Identifier
 package-lock.json
