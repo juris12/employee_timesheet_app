@@ -5,29 +5,33 @@
 {% block content %}
 <section class="employee_outer">
   <div class="employee_filter">
-        <h2>Employee {{employee.username}}</h2>
+        <h2>Employee {{employee.username}} at {{date}}</h2>
         <button id="toggleButton" onclick="toggleAmount()">Show 60/120</button>
-        <h4> Found {{ num_rows }} dates</h4>
+        <h4> Found {{ num_rows }} attendances</h4>
     </div>
 
   <table id="employee_table">
     <thead>
       <tr>
         <th>Date</th>
-        <th>Hours worked comb.</th>
+        <th>Hours worked</th>
       </tr>
     </thead>
     <tbody>
       {% for atte in attendance %}
-        <tr onclick="window.location.href='date/{{ atte.date }}'">
+        <tr>
           <td>{{ atte.date }}</td>
-          <td>{{ atte.total_hours }} h</td>
+          <td>{{ atte.hours_worked }} h</td>
         </tr>
       {% empty %}
         <tr>
           <td colspan="2">No data found</td>
         </tr>
       {% endfor %}
+        <tr>
+          <td><h3>Together:</h3></td>
+          <td><h3>{{ total }} h</h3></td>
+        </tr>
     </tbody>
   </table>
 </section>

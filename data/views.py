@@ -30,7 +30,7 @@ def create_list_of_employes(request):
         io_string = io.StringIO(decoded_file)
         reader = csv.DictReader(io_string)
         reader.fieldnames = [name.strip() for name in reader.fieldnames]
-        max_rows = 30
+        max_rows = 300
         created_users = 0
 
         for i, row in enumerate(reader):
